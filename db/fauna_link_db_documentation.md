@@ -86,16 +86,3 @@ user_id       : Foreign key referencing the users table.
 session_token : Unique token for identifying a session.
 expires_at    : Timestamp for when the session expires.
 created_at    : Timestamp of when the session was created.
-
-## Table 6: `audit_log` 
-
-### Purpose:
-Records user actions withing the system for auditing and traceability purposes.
-
-### Fields:
-log_id        : Auto-incrementing unique identifier for each audit log entry.
-user_id       : Foreign key referencing the users table.
-action        : Description of the action performed by the user.
-table_name    : Name of the table where the action occurred.
-row_id        : Identifier of the row affected by the action (if applicable).
-created_at    : Timestamp of when the action was performed.
