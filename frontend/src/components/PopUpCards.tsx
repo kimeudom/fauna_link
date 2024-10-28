@@ -15,6 +15,7 @@ export default function PopUpCards(props: {pois: Poi, closeCard: () => void}): J
             <p>Species: {props.pois.species}</p>
             <p>Latitude: {props.pois.location.lat}</p>
             <p>Longitude: {props.pois.location.lng}</p>
+            <p>Altitude: {props.pois.altitude}</p>
             <p>Battery Level: {props.pois.batteryLevel}</p>
         </div>
     )
