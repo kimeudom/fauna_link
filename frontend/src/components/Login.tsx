@@ -18,12 +18,15 @@ export default function Login(): JSX.Element{
                 <img src={animal_background} className="w-full h-full object-cover" alt="Animal Background" />
             </div>
             <div className="w-1/2 h-full bg-[#f5f5f5] flex flex-col p-32 justify-between items-center">
-                <h1 className="w-full max-w-[500px] mx-auto text-xl text-[#060606] font-semibold mr-auto">Fauna Link</h1>
+                <div className = 'mt-20 relative left-[-198px]'>
+                    <h1 className="w-full max-w-[500px] mx-auto text-xl text-[#060606] font-semibold mb-1">Fauna Link</h1>
+                </div>
+               
 
-                <div className='w-full flex flex-col max-w-[500px]'>
+                <div className='w-full flex flex-col max-w-[500px] mt-[-10px]'>
                     <div className='w-full flex flex-col mb-2'>
                         <h3 className='text-3xl font-semibold mb-2'>Login</h3>
-                        <p className='text-base mb-2'>Welcome Back! Please enter your details</p>
+                        <p className='text-base mb-1'>Welcome Back! Please enter your details</p>
                     </div>
 
                     <div className='w-full flex flex-col'>
@@ -55,24 +58,7 @@ export default function Login(): JSX.Element{
                         >
                             Log in
                         </button>
-                        <button className='w-full text-[#060606] my-2 font-semibold bg-white border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'
-                            onClick = {() => navigate("/signup")}>
-                            Register
-                        </button>
                     </div>
-
-                    <div className='w-full flex items-center justify-center relative py-2'>
-                        <div className='w-full h-[1px] bg-black/40'></div>
-                        <p className='text-lg absolute text-black/80 bg-[#f5f5f5]'>or</p>
-                    </div>
-                    <div className='w-full text-[#060606] my-2 font-semibold bg-white border border-black/40 rounded-md p-4 text-center flex items-center justify-center'>
-                        <img src={GOOGLE_ICON} className="h-6 mr-2" alt="Google Icon" />
-                        Sign In With Google
-                    </div>
-                </div>
-
-                <div className='w-full flex items-center justify-center'>
-                    <p className='text-sm font-normal text-[#060606]'>Don't have an account? <span className='font-semibold underline-offset-2 cursor-pointer'>Sign up for free</span></p>
                 </div>
             </div>
         </div>

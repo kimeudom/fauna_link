@@ -40,6 +40,11 @@ export default function RegisterUsers(): JSX.Element {
                         placeholder="Password"
                         className="w-full py-2 px-3 rounded-lg mb-3 border border-black placeholder-black focus:outline-none"
                     />
+                    <input
+                        type="password"
+                        placeholder="Confirm password"
+                        className="w-full py-2 px-3 rounded-lg mb-3 border border-black placeholder-black focus:outline-none"
+                    />
                 </div>
 
                 {/* Stack the buttons vertically */}
@@ -47,18 +52,12 @@ export default function RegisterUsers(): JSX.Element {
                     <button className="w-full py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white text-lg font-semibold transition-colors">
                         Add User
                     </button>
-
-                    <button className="w-full py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white text-lg font-semibold transition-colors">
-                        Confirm User
-                    </button>
                 </div>
 
                 <div className="text-center mt-4">
-                    <p className="text-black">Back to 
-                        <span 
-                            className='font-semibold underline-offset-2 cursor-pointer mb-4' 
-                            onClick={() => navigate("/Ramani")}
-                        >
+                    <p className="text-black">Back to <span 
+                        className='font-semibold underline-offset-2 cursor-pointer mb-4' 
+                        onClick={() => navigate("/Ramani")}>
                             Main Page
                         </span>
                     </p>
