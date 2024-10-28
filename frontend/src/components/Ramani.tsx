@@ -1,3 +1,4 @@
+/* This code is renders the map */
 import { useState } from "react";
 import PoiMarkers, {Poi} from "./PoiMarkers";
 import PopUpCards from "./PopUpCards";
@@ -57,7 +58,7 @@ export default function Ramani(): JSX.Element{
                 console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
             } 
         >
-            <PoiMarkers pois = {animals} onMarkerClick={handleMarkerClick}/>
+            <PoiMarkers pois = {animals} onMarkerClick = {handleMarkerClick}/>
             {selectedPoi && <PopUpCards pois = {selectedPoi} closeCard = {closePopUp}/>}
         </Map>
     </APIProvider>

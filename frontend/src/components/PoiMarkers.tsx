@@ -1,4 +1,5 @@
-import React, {useCallback} from "react";
+/*This code puts markers on the map*/
+import {useCallback} from "react";
 import { AdvancedMarker,
     useMap,
     Pin

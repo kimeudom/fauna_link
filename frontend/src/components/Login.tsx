@@ -1,40 +1,16 @@
-// src/components/Login1.tsx
-import React, { useState, useRef, useEffect } from 'react';
-import animal_background from '../assets/elephants.jpg'; // Ensure this image exists
-import GOOGLE_ICON from '../assets/google.svg'; // Ensure this image exists
+import { useNavigate } from 'react-router-dom';
+import animal_background from '../assets/elephants.jpg';
+import GOOGLE_ICON from '../assets/google.svg';
 
-const Login: React.FC = () => {
-    const [username, setUsername] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [errorMessage, setErrorMessage] = useState<string>('');
-    const emailRef = useRef<HTMLInputElement | null>(null); // Ref for focusing the email input
+const colors = {
+    primary: "#060606",
+    background: "#E0E0E0",
+    disabled: "#D9D9D9"
+}
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+export default function Login(): JSX.Element{
 
-        // Simple validation
-        if (username === '' || password === '') {
-            setErrorMessage('Please enter both username and password.');
-        } else {
-            console.log('Username:', username);
-            console.log('Password:', password);
-
-            // Normally, you'd authenticate and navigate
-            // For simplicity, we'll just log the values
-            alert('Logged in successfully!');
-
-            // Reset the input fields
-            setUsername('');
-            setPassword('');
-            setErrorMessage('');
-        }
-    };
-
-    useEffect(() => {
-        if (emailRef.current) {
-            emailRef.current.focus(); // Focus on the email input when component mounts
-        }
-    }, []);
+    const navigate = useNavigate()
 
     return (
         <div className="w-full h-screen flex">
@@ -48,40 +24,43 @@ const Login: React.FC = () => {
                     <div className='w-full flex flex-col mb-2'>
                         <h3 className='text-3xl font-semibold mb-2'>Login</h3>
                         <p className='text-base mb-2'>Welcome Back! Please enter your details</p>
-                        {errorMessage && <p className="text-red-500 text-center mb-4">{errorMessage}</p>}
                     </div>
 
-                    <form onSubmit={handleSubmit} className='w-full flex flex-col'>
+                    <div className='w-full flex flex-col'>
                         <input 
                             type="email"
-                            ref={emailRef} // Reference for focusing
                             placeholder='Email'
-                            className='w-full text-black py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)} // Handle input change
-                            required
+                            className='w-full text-black py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none' 
                         />
+
                         <input 
                             type="password"
                             placeholder='Password'
-                            className='w-full text-black py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} // Handle input change
-                            required
+                            className='w-full text-black py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none' 
                         />
-                        <div className='w-full flex items-center justify-between my-2'>
-                            <div className='w-full flex'>
-                                <input type="checkbox" className='w-4 h-4 mr-2'/>
-                                <p className='text-sm'>Remember Me</p>
-                            </div>
-                            <p className='text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2'>Forgot Password?</p>
+                    </div>
+
+                    <div className='w-full flex items-center justify-between'>
+                        <div className='w-full flex'>
+                            <input type="checkbox" className='w-4 h-4 mr-2'/>
+                            <p className='text-sm'>Remember Me</p>
                         </div>
-                        <button
-                            type="submit"
-                            className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
+
+                        <p className='text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2'>Forgot Password?</p>
+                    </div>
+
+                    <div className='w-full flex flex-col my-4'>
+                        <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center cursor-pointer'
+                            onClick = {() => navigate("/Ramani")}
+                        >
                             Log in
                         </button>
-                    </form>
+                        <button className='w-full text-[#060606] my-2 font-semibold bg-white border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'
+                            onClick = {() => navigate("/signup")}>
+                            Register
+                        </button>
+                    </div>
+
                     <div className='w-full flex items-center justify-center relative py-2'>
                         <div className='w-full h-[1px] bg-black/40'></div>
                         <p className='text-lg absolute text-black/80 bg-[#f5f5f5]'>or</p>
@@ -93,19 +72,9 @@ const Login: React.FC = () => {
                 </div>
 
                 <div className='w-full flex items-center justify-center'>
-                    <p className='text-sm font-normal text-[#060606]'>
-                        Don't have an account? 
-                        <a 
-                            href="/signup" // Use an anchor tag for navigation
-                            className='font-semibold underline-offset-2 cursor-pointer'
-                        >
-                            Sign up for free
-                        </a>
-                    </p>
+                    <p className='text-sm font-normal text-[#060606]'>Don't have an account? <span className='font-semibold underline-offset-2 cursor-pointer'>Sign up for free</span></p>
                 </div>
             </div>
         </div>
     );
 }
-
-export default Login;

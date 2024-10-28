@@ -1,8 +1,11 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import animal_background from '../assets/elephants.jpg'; 
 import GOOGLE_ICON from '../assets/google.svg'; 
 
-const SignUp: React.FC = () => {
+export default function SignUp(): JSX.Element{
+
+    const navigate = useNavigate()
+
     return (
         <div className="w-full h-screen flex">
             <div className="relative w-1/2 h-full flex flex-col">
@@ -54,9 +57,8 @@ const SignUp: React.FC = () => {
                 <div className='w-full flex items-center justify-center'>
                     <p className='text-sm font-normal text-[#060606]'>
                         Already have an account? 
-                        <a 
-                            href="/" // Link to the login page
-                            className='font-semibold underline-offset-2 cursor-pointer'
+                        <a className='font-semibold underline-offset-2 cursor-pointer'
+                            onClick = {() => navigate("/")}
                         >
                             Log in
                         </a>
@@ -66,5 +68,3 @@ const SignUp: React.FC = () => {
         </div>
     );
 };
-
-export default SignUp;
