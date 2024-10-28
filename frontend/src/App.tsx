@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Ramani from './components/Ramani';
+
 export default function App() {
+
   return (
-    <Ramani/>
+    <div>
+      <Ramani/>
+    </div>
   );
 }
