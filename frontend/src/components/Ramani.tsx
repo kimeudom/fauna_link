@@ -1,35 +1,43 @@
-import React, {useEffect, useState, useRef, useCallback} from "react";
-import {AdvancedMarker, 
+import { useState } from "react";
+import PoiMarkers, {Poi} from "./PoiMarkers";
+import PopUpCards from "./PopUpCards";
+import { 
     APIProvider, 
     Map, 
-    MapCameraChangedEvent, 
-    useMap,
-    Pin,
-    MarkerRef
+    MapCameraChangedEvent
 } from '@vis.gl/react-google-maps';
 
-//Definition of a Point of Interest Data Type
-type Poi = {
-    key: string, 
-    location: google.maps.LatLngLiteral
-}
-
-// Definition of the places we want marked
-const locations: Poi[] = [
-    {key: 'Wildbeast migration', location: {lat:-1.2921, lng:35.0022}},
-    {key: 'Talek Gate', location: {lat:-1.4148, lng:35.1535}}
+//Dummy data of animals we want marked
+const animals: Poi[] = [
+    {key: 1, location: {lat:-1.2921, lng:35.0022}, species:"Lion", batteryLevel: 92, altitude:1702},
+    {key: 2, location: {lat:-1.4148, lng:35.1535}, species: "Elephant", batteryLevel: 80, altitude:1710}
 ]
 
 export default function Ramani(): JSX.Element{
+
     //Environment variables with our google API  credentials. 
     const API = process.env.REACT_APP_API_KEY;
     const MapId = process.env.REACT_APP_MAP_ID;
+    
     //Test position, when the map renders it the FOV will be at this point
     const MaasaiMaraCoordinates = {
         lat: -1.4065,
         lng: 35.1456,
     }
+
+    const [selectedPoi, setSelectedPoi] = useState<Poi | null>(null);
+
+     // Function to handle marker click and update selected POI
+     const handleMarkerClick = (poi: Poi) => {
+        setSelectedPoi(poi);
+    };
+
+    // Function to close the pop-up
+    const closePopUp = () => {
+        setSelectedPoi(null);
+    };
     
+    //Making sure we have API key and Map ID
     if (!API){
         throw new Error("API key is missing!")
     }
@@ -49,51 +57,9 @@ export default function Ramani(): JSX.Element{
                 console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
             } 
         >
-            <PoiMarkers pois = {locations}/>
+            <PoiMarkers pois = {animals} onMarkerClick={handleMarkerClick}/>
+            {selectedPoi && <PopUpCards pois = {selectedPoi} closeCard = {closePopUp}/>}
         </Map>
     </APIProvider>
     )
 }
-//Customization of our marker styling
-const PoiMarkers = (props: {pois: Poi[]}) =>{
-    //Defines an instance of the map
-    const map = useMap();
-    //Function that does something when marker is clicked
-    const handleClick = useCallback((ev: google.maps.MapMouseEvent) => {
-        if (!map) return;
-        if (!ev.latLng) return;
-        //Test for click event
-        console.log('Marker clicked:', ev.latLng.toString())
-        // move camera to marker that has been clicked
-        map.panTo(ev.latLng)
-
-        //zoom in slightly to marker that has been clicked
-        const currentZoom = map.getZoom() || 10
-        map.setZoom(currentZoom + 2)
-
-        
-    },[map])
-
-    return(
-        <>
-           {props.pois.map( (poi: Poi) => (
-                <AdvancedMarker
-                    key = {poi.key}
-                    position = {poi.location}
-                    clickable = {true}
-                    onClick = {handleClick}
-                >
-                <>
-                    <Pin 
-                        background = {'#90EE90'}
-                        glyphColor = {'#FFFFFF'}
-                        borderColor = {'#FFFFFF'}
-                    />  
-                </>           
-                </AdvancedMarker> 
-           ))}
-        </>
-    )
-}
-
-            
