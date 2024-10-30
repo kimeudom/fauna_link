@@ -1,0 +1,11 @@
+# Python files and directories
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# Node.js files and directories
+node_modules/
+frontend/node_modules/
+frontend/build/
