@@ -32,7 +32,10 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
 
         //Zoom in slightly to marker that has been clicked
         const currentZoom = map.getZoom() || 10
-        map.setZoom(currentZoom + 2)
+        if (currentZoom != 15){
+            map.setZoom(currentZoom + 1)
+        }
+       
    
     },[map,props])
 
