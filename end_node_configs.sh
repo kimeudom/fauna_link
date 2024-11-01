@@ -4,7 +4,11 @@
 # Check if Meshtastic CLI is installed
 if ! command -v meshtastic &> /dev/null
 then
-    echo "Meshtastic CLI could not be found. Please install it before running this script."
+    echo "Meshtastic CLI could not be found. Please install it before running this script.
+    
+    Use pip to install it.
+    pip3 install meshtastic
+    "
     exit 1
 fi
 
