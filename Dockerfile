@@ -1,5 +1,5 @@
 # Stage 1: Node.js for building the frontend
-FROM node:18 AS frontend-builder
+FROM --platform=$BUILDPLATFORM node:18 AS frontend-builder
 
 # Set working directory for the frontend
 WORKDIR /app/frontend
@@ -16,7 +16,7 @@ COPY frontend ./
 RUN npm run build
 
 # Stage 2: Python for running the Flask server
-FROM python:3.11.2-slim AS final
+FROM --platform=$TARGETPLATFORM python:3.11.2 AS final
 
 # Set working directory for the backend
 WORKDIR /app
