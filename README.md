@@ -21,6 +21,10 @@
 
 
 ---
+# T-Beam Config Documentation
+  Use this [link](./documentation/t_beam_config.md) to configure your `LoRa endNodes`.
+
+---
 # Fauna link Docker Implementation
 
   Use this [link](./documentation/docker.md) to run the project on `Docker`.
