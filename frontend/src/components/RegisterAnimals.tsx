@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import animal_background from '../assets/elephants.jpg'; 
 
-export default function RegisterUsers(): JSX.Element {
+const RegisterAnimals: React.FC = () => {
     const navigate = useNavigate();
 
     // Function to handle close action
@@ -24,32 +24,37 @@ export default function RegisterUsers(): JSX.Element {
                     onClick={handleClose} 
                     className="absolute top-3 right-3 text-2xl font-bold text-black"
                 >
-                    &times; {/* X symbol */}
+                    &times; 
                 </button>
                 
-                <h3 className="text-2xl font-semibold mb-5 text-center text-black">Register Users</h3> 
+                <h3 className="text-2xl font-semibold mb-5 text-center text-black">Register Animals</h3> 
 
                 <div className="flex flex-col w-full mb-4">
                     <input
                         type="text"
-                        placeholder="Username"
+                        placeholder="Animal Name"
                         className="w-full py-2 px-3 rounded-lg mb-3 border border-black placeholder-black focus:outline-none"
                     />
                     <input
-                        type="password"
-                        placeholder="Password"
+                        type="text"
+                        placeholder="Species"
                         className="w-full py-2 px-3 rounded-lg mb-3 border border-black placeholder-black focus:outline-none"
                     />
                     <input
-                        type="password"
-                        placeholder="Confirm password"
+                        type="number"
+                        placeholder="Age"
+                        className="w-full py-2 px-3 rounded-lg mb-3 border border-black placeholder-black focus:outline-none"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Location"
                         className="w-full py-2 px-3 rounded-lg mb-3 border border-black placeholder-black focus:outline-none"
                     />
                 </div>
 
                 <div className="flex flex-col w-full space-y-4">
                     <button className="w-full py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white text-lg font-semibold transition-colors">
-                        Add User
+                        Add Animal
                     </button>
                 </div>
 
@@ -65,3 +70,5 @@ export default function RegisterUsers(): JSX.Element {
         </div>
     );
 }
+
+export default RegisterAnimals;
