@@ -9,3 +9,8 @@ MarkupSafe==3.0.2
 SQLAlchemy==2.0.36
 typing_extensions==4.12.2
 Werkzeug==3.0.4
+python-dotenv==1.0.1
+pymysql==1.1.1
+flasgger==0.9.7.1
+packaging==24.1
+PyYAML==6.0.2
