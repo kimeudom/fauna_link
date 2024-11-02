@@ -1,0 +1,35 @@
+summary: Delete a GPS data entry
+description: Delete a specific GPS data entry from the database by its unique ID.
+tags:
+  - GPS Data
+parameters:
+  - name: gps_data_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the GPS data entry to delete
+responses:
+  200:
+    description: GPS data entry deleted successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "GPS data entry deleted successfully"
+  404:
+    description: GPS data entry not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "GPS data entry not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

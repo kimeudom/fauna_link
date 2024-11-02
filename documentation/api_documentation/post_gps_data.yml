@@ -1,0 +1,68 @@
+summary: Create a new GPS data entry
+description: Add a new GPS data entry for a specific animal.
+tags:
+  - GPS Data
+parameters:
+  - name: body
+    in: body
+    required: true
+    description: JSON object containing GPS data
+    schema:
+      type: object
+      required:
+        - animal_id
+        - latitude
+        - longitude
+      properties:
+        animal_id:
+          type: integer
+          description: ID of the animal associated with the GPS data
+          example: 1
+        latitude:
+          type: number
+          format: float
+          description: Latitude coordinate
+          example: -1.2687
+        longitude:
+          type: number
+          format: float
+          description: Longitude coordinate
+          example: 36.8015
+        altitude:
+          type: number
+          format: float
+          description: Altitude at the animal's location
+          example: 1700.5
+        battery_level:
+          type: number
+          description: Battery level percentage of the tracking device
+          example: 85
+        signal_strength:
+          type: number
+          description: Signal strength of the GPS data
+          example: 72
+responses:
+  201:
+    description: GPS data entry created successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "GPS data entry created successfully"
+  400:
+    description: Invalid request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid data format"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

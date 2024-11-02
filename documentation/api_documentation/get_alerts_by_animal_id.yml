@@ -1,0 +1,33 @@
+summary: Retrieve alerts by animal ID
+description: Retrieve alerts associated with a specific animal by its unique ID.
+tags:
+  - Alerts
+parameters:
+  - name: animal_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the animal
+responses:
+  200:
+    description: List of alerts retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/Alert'
+  404:
+    description: Alerts not found for the given animal ID
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "No alerts found for this animal"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"
