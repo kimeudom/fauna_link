@@ -1,0 +1,35 @@
+summary: Delete an alert
+description: Delete a specific alert from the database by its unique ID.
+tags:
+  - Alerts
+parameters:
+  - name: alert_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the alert to delete
+responses:
+  200:
+    description: Alert deleted successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Alert deleted successfully"
+  404:
+    description: Alert not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Alert not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

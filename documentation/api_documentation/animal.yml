@@ -1,0 +1,44 @@
+# Retrieve all animals
+description: Retrieve all animals from the database.
+tags:
+  - Animals
+responses:
+  200:
+    description: List of animals retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/Animal'
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"
+
+# Definitions for animals
+definitions:
+  Animal:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique ID of the animal
+      name:
+        type: string
+        description: Name of the animal
+        example: "Lion"
+      species:
+        type: string
+        description: Species of the animal
+        example: "Panthera leo"
+      description:
+        type: string
+        description: Additional details about the animal
+        example: "A lion known for its large mane."
+      date_added:
+        type: string
+        format: date-time
+        description: Date the animal was added

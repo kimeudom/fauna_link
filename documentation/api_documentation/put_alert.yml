@@ -1,0 +1,58 @@
+summary: Update an alert
+description: Update details for a specific alert by its unique ID.
+tags:
+  - Alerts
+parameters:
+  - name: alert_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the alert to update
+  - name: body
+    in: body
+    required: true
+    description: JSON object containing updated alert details
+    schema:
+      type: object
+      properties:
+        alert_type:
+          type: string
+          description: Updated type of alert
+          example: "Battery Critical"
+        description:
+          type: string
+          description: Updated details about the alert
+          example: "Battery level below 10%"
+responses:
+  200:
+    description: Alert updated successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Alert updated successfully"
+  400:
+    description: Invalid request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid data format"
+  404:
+    description: Alert not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Alert not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"
