@@ -1,0 +1,35 @@
+summary: Delete an animal
+description: Delete a specific animal from the database by its unique ID.
+tags:
+  - Animals
+parameters:
+  - name: animal_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the animal to delete
+responses:
+  200:
+    description: Animal deleted successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Animal deleted successfully"
+  404:
+    description: Animal not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Animal not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

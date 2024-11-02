@@ -1,0 +1,31 @@
+summary: Retrieve an animal by ID
+description: Retrieve the details of a specific animal by its unique ID.
+tags:
+  - Animals
+parameters:
+  - name: animal_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the animal
+responses:
+  200:
+    description: Animal details retrieved successfully
+    schema:
+      $ref: '#/definitions/Animal'
+  404:
+    description: Animal not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Animal not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

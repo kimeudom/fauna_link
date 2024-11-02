@@ -1,0 +1,58 @@
+summary: Create a new animal
+description: Add a new animal to the database.
+tags:
+  - Animals
+parameters:
+  - name: body
+    in: body
+    required: true
+    description: JSON object containing animal details
+    schema:
+      type: object
+      required:
+        - end_node_id
+        - name
+        - description
+        - species
+      properties:
+        end_node_id:
+          type: string
+          description: The node id of the tracker
+          example: "13"
+        name:
+          type: string
+          description: Name of the animal
+          example: "Lion"
+        species:
+          type: string
+          description: Species of the animal
+          example: "Panthera leo"
+        description:
+          type: string
+          description: Additional details about the animal
+          example: "A lion known for its large mane."
+responses:
+  201:
+    description: Animal created successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Animal created successfully"
+  400:
+    description: Invalid request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid data format"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

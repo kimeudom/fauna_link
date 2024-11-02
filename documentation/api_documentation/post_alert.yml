@@ -1,0 +1,53 @@
+summary: Create a new alert
+description: Add a new alert for a specific animal.
+tags:
+  - Alerts
+parameters:
+  - name: body
+    in: body
+    required: true
+    description: JSON object containing alert details
+    schema:
+      type: object
+      required:
+        - animal_id
+        - alert_type
+        - description
+      properties:
+        animal_id:
+          type: integer
+          description: ID of the animal the alert is associated with
+          example: 1
+        alert_type:
+          type: string
+          description: Type of alert
+          example: "Low Battery"
+        description:
+          type: string
+          description: Details about the alert
+          example: "Battery level below 20%"
+responses:
+  201:
+    description: Alert created successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Alert created successfully"
+  400:
+    description: Invalid request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid data format"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

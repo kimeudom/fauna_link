@@ -1,0 +1,73 @@
+summary: Update a GPS data entry
+description: Update GPS data details for a specific entry by its unique ID.
+tags:
+  - GPS Data
+parameters:
+  - name: gps_data_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the GPS data entry to update
+  - name: body
+    in: body
+    required: true
+    description: JSON object containing updated GPS data
+    schema:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+          description: Updated latitude coordinate
+          example: -1.2688
+        longitude:
+          type: number
+          format: float
+          description: Updated longitude coordinate
+          example: 36.8020
+        altitude:
+          type: number
+          format: float
+          description: Updated altitude at the animal's location
+          example: 1698.0
+        battery_level:
+          type: number
+          description: Updated battery level percentage of the tracking device
+          example: 75
+        signal_strength:
+          type: number
+          description: Updated signal strength of the GPS data
+          example: 68
+responses:
+  200:
+    description: GPS data entry updated successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "GPS data entry updated successfully"
+  400:
+    description: Invalid request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid data format"
+  404:
+    description: GPS data entry not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "GPS data entry not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"

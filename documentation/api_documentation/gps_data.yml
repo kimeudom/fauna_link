@@ -1,0 +1,58 @@
+summary: Retrieve a list of all GPS data entries
+description: Retrieve all GPS data entries for tracked animals.
+tags:
+  - GPS Data
+responses:
+  200:
+    description: List of GPS data entries retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/GPSData'
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"
+
+definitions:
+  GPSData:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique ID of the GPS data entry
+      animal_id:
+        type: integer
+        description: ID of the animal associated with the GPS data
+      latitude:
+        type: number
+        format: float
+        description: Latitude coordinate of the animal
+        example: -1.2687
+      longitude:
+        type: number
+        format: float
+        description: Longitude coordinate of the animal
+        example: 36.8015
+      altitude:
+        type: number
+        format: float
+        description: Altitude at the animal's location
+        example: 1700.5
+      timestamp:
+        type: string
+        format: date-time
+        description: Time the GPS data was recorded
+        example: "2023-08-01T16:00:00Z"
+      battery_level:
+        type: number
+        description: Battery level percentage of the tracking device
+        example: 85
+      signal_strength:
+        type: number
+        description: Signal strength of the GPS device
+        example: 72
