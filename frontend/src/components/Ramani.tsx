@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 import PoiMarkers, {Poi} from "./PoiMarkers";
 import PopUpCards from "./PopUpCards";
-import Filter from "./Filter";
+import Sidebar from "./Sidebar";
+
 import { 
     APIProvider, 
     Map, 
@@ -81,21 +82,24 @@ export default function Ramani(): JSX.Element{
     });
     
     return( 
-        
-    <APIProvider apiKey = {API} >
-        <Filter choices = {choices} onFilterChange = {handleFilterChange}/>
-        <Map
-            style={{ width: '100vw', height: '100vh'}}
-            mapId = {MapId}
-            defaultCenter = {WestlandsCoordinates}
-            defaultZoom={10}
-            onCameraChanged = { (ev: MapCameraChangedEvent) =>
-                console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-            } 
-        >
-            <PoiMarkers pois = {selectedAnimals} onMarkerClick = {handleMarkerClick}/>
-            {selectedPoi && <PopUpCards pois = {selectedPoi} closeCard = {closePopUp}/>}
-        </Map>
-    </APIProvider>
+        <div className = "relative w-screen h-screen"> 
+            <div className = "absolute top-0 left-0 z-10">
+            <Sidebar choices = {choices} onFilterChange = {handleFilterChange}/>
+            </div>
+            <APIProvider apiKey = {API} >
+                <Map
+                    style={{ width: '100vw', height: '100vh'}}
+                    mapId = {MapId}
+                    defaultCenter = {WestlandsCoordinates}
+                    defaultZoom={10}
+                    onCameraChanged = { (ev: MapCameraChangedEvent) =>
+                        console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+                    } 
+                >
+                    <PoiMarkers pois = {selectedAnimals} onMarkerClick = {handleMarkerClick}/>
+                    {selectedPoi && <PopUpCards pois = {selectedPoi} closeCard = {closePopUp}/>}
+                </Map>
+            </APIProvider>
+        </div>
     )
 }
