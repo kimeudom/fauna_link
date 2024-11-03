@@ -5,21 +5,30 @@ import { IoMdLogIn } from "react-icons/io";
 import { FaHome, FaUsers, FaPlusCircle } from "react-icons/fa";
 import { IoPawSharp } from "react-icons/io5";
 
-const Sidebar: React.FC = () => {
+export default function Sidebar(props: {choices:string[], onFilterChange: (selectedChoice: string) => void}): JSX.Element {
     const [open, setOpen] = useState(true);
+
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
-    // Dummy data for dropdown
-    const animals = ["Lion", "Elephant", "Leopard", "Rhino"];
+
+    const [selectedChoice, setSelectedChoice] = useState<string>("")
+
+    const handleDropdownChoice = (event: React.ChangeEvent<HTMLSelectElement>) =>{
+
+        const choice = event.target.value;
+        setSelectedChoice(choice)
+        //Send selected choice back to parent
+        props.onFilterChange(choice) 
+    }
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
     };
 
     const menus = [
-        { name: 'Login', link: '/Login', icon: <IoMdLogIn size={20} /> },
+        { name: 'Login', link: '/', icon: <IoMdLogIn size={20} /> },
         { name: 'Select a species', link: '#', icon: <IoPawSharp size={20} /> },
         { name: 'Register Users', link: '/signup', icon: <FaUsers size={20} /> },
-        { name: 'Register Animals', link: '/registeranimals', icon: <FaPlusCircle size={20} /> },
+        { name: 'Register Animals', link: '/registerAnimals', icon: <FaPlusCircle size={20} /> },
     ];
 
     return (
@@ -54,9 +63,18 @@ const Sidebar: React.FC = () => {
                             {/* Dropdown for Filtering Animals */}
                             {menu.name === 'Select a species' && open && showDropdown && (
                                 <div className="mt-2">
-                                    <select className="w-full text-black bg-white rounded-md">
-                                        {animals.map((animal, index) => (
-                                            <option key={index} value={animal}>{animal}</option>
+                                    <select className="w-full text-black bg-white rounded-md"
+                                        onChange = {handleDropdownChoice}
+                                        value = {selectedChoice}
+                                    >         
+                                        <option value = "All">All</option>
+                                        {props.choices.map((choice, index) => (
+                                            <option
+                                                key={index} 
+                                                value={choice}
+                                            >
+                                                {choice}
+                                            </option>
                                         ))}
                                     </select>
                                 </div>
@@ -68,5 +86,3 @@ const Sidebar: React.FC = () => {
         </section>
     );
 }
-
-export default Sidebar;
