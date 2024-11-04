@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoMdLogIn } from "react-icons/io";
-import { FaHome, FaUsers, FaPlusCircle } from "react-icons/fa";
+import { FaUsers, FaPlusCircle } from "react-icons/fa";
 import { IoPawSharp } from "react-icons/io5";
 
 export default function Sidebar(props: {choices:string[], onFilterChange: (selectedChoice: string) => void}): JSX.Element {
