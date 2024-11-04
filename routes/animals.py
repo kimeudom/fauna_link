@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
-from controllers.animal_controller import get_all_animals, get_animal_by_id, create_animal, update_animal, delete_animal
+from controllers.animal_controller import get_all_animals, get_animal_by_id, create_animal, update_animal, delete_animal, get_animal_with_latest_location
 
 animal_bp = Blueprint('animal', __name__)
 
@@ -40,3 +40,19 @@ def modify_animal(animal_id):
 def remove_animal(animal_id):
     delete_animal(animal_id)
     return jsonify({"message": "Animal deleted"}), 200
+
+
+@animal_bp.route('/latest_location', methods=['GET'])
+@swag_from('../documentation/api_documentation/get_latest_location_all_animals.yml')
+def get_animals_with_latest_location():
+    animals = get_animal_with_latest_location()
+    return jsonify(animals), 200
+
+
+@animal_bp.route('/<int:animal_id>/latest_location', methods=['GET'])
+@swag_from('../documentation/api_documentation/get_latest_location_by_animal_id.yml')
+def get_animal_with_latest_location_by_id(animal_id):
+    animal = get_animal_with_latest_location(animal_id)
+    if animal:
+        return jsonify(animal), 200
+    return jsonify({"error": "Animal not found or no GPS data available"}), 404
