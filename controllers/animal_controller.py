@@ -58,7 +58,9 @@ def get_animal_with_latest_location(animal_id=None):
         Animal.description,
         GPSData.latitude,
         GPSData.longitude,
+        GPSData.altitude,
         GPSData.timestamp,
+        GPSData.battery_level,
         GPSData.signal_strength
     ).join(GPSData, GPSData.animal_id == Animal.id)\
      .filter(GPSData.timestamp == latest_timestamp_subquery)
@@ -78,8 +80,10 @@ def get_animal_with_latest_location(animal_id=None):
         "description": result.description,
         "latitude": result.latitude,
         "longitude": result.longitude,
-        "timestamp": result.timestamp,
-        "signal_strength": result.signal_strength
+        "altitude": result.altitude,
+        "battery_level": result.battery_level,
+        "signal_strength": result.signal_strength,
+          "timestamp": result.timestamp
     } for result in results]
 
     return data[0] if animal_id else data

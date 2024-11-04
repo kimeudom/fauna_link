@@ -9,10 +9,15 @@ import { AdvancedMarker,
 //Definition of a Point of Interest Data Type
 export type Poi = {
     key: number, 
+    name: string,
+    species: string,
     location: google.maps.LatLngLiteral,
-    species: string
-    batteryLevel: number
-    altitude: number
+    altitude: number,
+    batteryLevel: number,
+    signalStrength: number,
+    timeStamp:string
+   
+    
 }
 
 const boundaryCoords = [
@@ -55,7 +60,7 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
 
         //Zoom in slightly to marker that has been clicked
         const currentZoom = map.getZoom() || 10
-        if (currentZoom !== 15){
+        if (currentZoom !== 13){
             map.setZoom(currentZoom + 1)
         }
        
@@ -71,7 +76,7 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
                 insideBoundary.map( (poi: Poi) => (
                 <AdvancedMarker
                     key = {poi.key}
-                    position = {poi.location}
+                    position = { poi.location}
                     clickable = {true}
                     onClick = {(ev) =>handleClick(ev,poi)}
                 >
@@ -86,10 +91,10 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
            ))}
 
             {/*Markers outside the boundary */
-                outsideBoundary.map( (poi: Poi) => (
+                outsideBoundary.map( (poi: Poi) => (  
                 <AdvancedMarker
                     key = {poi.key}
-                    position = {poi.location}
+                    position = { poi.location}
                     clickable = {true}
                     onClick = {(ev) =>handleClick(ev,poi)}
                 >
@@ -100,7 +105,7 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
                         borderColor = {'#FFFFFF'}
                     />  
                 </>           
-                </AdvancedMarker> 
+                </AdvancedMarker>
             ))}
         </>
     )
