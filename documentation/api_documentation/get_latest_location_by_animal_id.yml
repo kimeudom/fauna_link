@@ -1,0 +1,67 @@
+summary: Retrieve latest location data for a specific animal
+description: Retrieve the most recent GPS data for a specific animal by its unique ID, including latitude, longitude, timestamp, and signal strength.
+tags:
+  - Animals
+parameters:
+  - name: animal_id
+    in: path
+    required: true
+    type: integer
+    description: Unique ID of the animal to retrieve latest GPS data for
+responses:
+  200:
+    description: Latest GPS data for the specified animal retrieved successfully
+    schema:
+      $ref: '#/definitions/AnimalWithLatestLocation'
+  404:
+    description: Animal or GPS data not found for the given animal ID
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Animal not found or no GPS data available"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"
+
+definitions:
+  AnimalWithLatestLocation:
+    type: object
+    properties:
+      animal_id:
+        type: integer
+        description: Unique ID of the animal
+      name:
+        type: string
+        description: Name of the animal
+      species:
+        type: string
+        description: Species of the animal
+      description:
+        type: string
+        description: Additional details about the animal
+      latitude:
+        type: number
+        format: float
+        description: Latitude coordinate of the animal's latest location
+        example: -1.2687
+      longitude:
+        type: number
+        format: float
+        description: Longitude coordinate of the animal's latest location
+        example: 36.8015
+      timestamp:
+        type: string
+        format: date-time
+        description: Time the GPS data was recorded
+        example: "2023-08-01T16:00:00Z"
+      signal_strength:
+        type: number
+        description: Signal strength of the GPS device at the time of recording
+        example: 72

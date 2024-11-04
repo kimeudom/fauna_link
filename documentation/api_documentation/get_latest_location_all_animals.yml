@@ -1,0 +1,55 @@
+summary: Retrieve latest location data for all animals
+description: Retrieve the most recent GPS data for each animal, including latitude, longitude, timestamp, and signal strength.
+tags:
+  - Animals
+responses:
+  200:
+    description: List of animals with their latest GPS data retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/AnimalWithLatestLocation'
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Internal server error"
+
+definitions:
+  AnimalWithLatestLocation:
+    type: object
+    properties:
+      animal_id:
+        type: integer
+        description: Unique ID of the animal
+      name:
+        type: string
+        description: Name of the animal
+      species:
+        type: string
+        description: Species of the animal
+      description:
+        type: string
+        description: Additional details about the animal
+      latitude:
+        type: number
+        format: float
+        description: Latitude coordinate of the animal's latest location
+        example: -1.2687
+      longitude:
+        type: number
+        format: float
+        description: Longitude coordinate of the animal's latest location
+        example: 36.8015
+      timestamp:
+        type: string
+        format: date-time
+        description: Time the GPS data was recorded
+        example: "2023-08-01T16:00:00Z"
+      signal_strength:
+        type: number
+        description: Signal strength of the GPS device at the time of recording
+        example: 72
