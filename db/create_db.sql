@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS animals (
 CREATE TABLE IF NOT EXISTS gps_data (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT,
-    latitude DECIMAL(10, 8),
-    longitude DECIMAL(11, 8),
+    latitude DECIMAL(18, 8),
+    longitude DECIMAL(19, 8),
     altitude DECIMAL(10, 2),
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     battery_level FLOAT,
