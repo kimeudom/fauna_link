@@ -10,13 +10,15 @@ export default function PopUpCards(props: {pois: Poi, closeCard: () => void}): J
                 className = "absolute top-1 right-1 bg-white p-1"
             >
                 X
-            </button>SS
+            </button>
             <p>Animal ID: {props.pois.key}</p>
             <p>Species: {props.pois.species}</p>
             <p>Latitude: {props.pois.location.lat}</p>
             <p>Longitude: {props.pois.location.lng}</p>
             <p>Altitude: {props.pois.altitude}</p>
-            <p>Battery Level: {props.pois.batteryLevel}%</p>
+            <p>Battery Level: {props.pois.batteryLevel}</p>
+            <p>Signal Strength: {props.pois.signalStrength}</p>
+            <p>Time Stamp: {props.pois.timeStamp}</p>
         </div>
     )
 }

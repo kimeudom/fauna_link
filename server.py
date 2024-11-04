@@ -6,6 +6,7 @@ from routes.animals import animal_bp
 from db import db
 from flask import Flask, send_from_directory
 from dotenv import load_dotenv
+from flask_cors import CORS
 import os
 
 load_dotenv()
@@ -13,6 +14,8 @@ load_dotenv()
 # Initialise Flask app
 app = Flask(__name__, static_folder="frontend/build")
 
+# Enable CORS for all routes
+CORS(app)
 # Configure SQLAlchemy using environment variables
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     f"mysql+pymysql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}"
