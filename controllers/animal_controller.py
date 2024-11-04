@@ -1,4 +1,7 @@
 from models.animal import Animal
+from models.gps import GPSData
+from sqlalchemy import func
+from db import db
 
 
 def create_animal(data):
@@ -38,3 +41,45 @@ def delete_animal(animal_id):
         animal.delete_from_db()
         return {"message": "Animal deleted successfully"}
     return {"error": "Animal not found"}
+
+
+def get_animal_with_latest_location(animal_id=None):
+    # Define the subquery for the latest timestamp
+    latest_timestamp_subquery = db.session.query(func.max(GPSData.timestamp))\
+        .filter(GPSData.animal_id == Animal.id)\
+        .correlate(Animal)\
+        .scalar_subquery()
+
+    # Main query joining Animal and GPSData
+    query = db.session.query(
+        Animal.id.label("animal_id"),
+        Animal.name,
+        Animal.species,
+        Animal.description,
+        GPSData.latitude,
+        GPSData.longitude,
+        GPSData.timestamp,
+        GPSData.signal_strength
+    ).join(GPSData, GPSData.animal_id == Animal.id)\
+     .filter(GPSData.timestamp == latest_timestamp_subquery)
+
+    if animal_id:
+        query = query.filter(Animal.id == animal_id)
+
+    results = query.all()
+
+    if not results:
+        return None if animal_id else []
+
+    data = [{
+        "animal_id": result.animal_id,
+        "name": result.name,
+        "species": result.species,
+        "description": result.description,
+        "latitude": result.latitude,
+        "longitude": result.longitude,
+        "timestamp": result.timestamp,
+        "signal_strength": result.signal_strength
+    } for result in results]
+
+    return data[0] if animal_id else data
