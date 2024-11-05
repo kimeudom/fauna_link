@@ -83,9 +83,11 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
                 <>
                     <Pin 
                         background = {'#90EE90'}
-                        glyphColor = {'#FFFFFF'}
-                        borderColor = {'#FFFFFF'}
+                        glyphColor = {poi.batteryLevel < 75 ?'#FFA500' : '#FFFFFF'} /* If battery is below 75 glyph will be orange */
+                        borderColor = {poi.signalStrength <75 ? '#4B0082' : '#FFFFFF'} /*If signal strength is below 75 border will purple */
+                        
                     />  
+                    
                 </>           
                 </AdvancedMarker> 
            ))}
@@ -100,9 +102,9 @@ export default function PoiMarkers(props: {pois: Poi[], onMarkerClick: (poi: Poi
                 >
                 <>
                     <Pin 
-                        background = {'#FF0000'}
-                        glyphColor = {'#FFFFFF'}
-                        borderColor = {'#FFFFFF'}
+                        background = {'#FF6666'}
+                        glyphColor = {poi.batteryLevel <75 ?'#FFA500' : '#FFFFFF'} /* If battery is below 75 glyph will be orange */
+                        borderColor = {poi.signalStrength <75 ? '#4B0082' : '#FFFFFF'} /*If signal strength is below 75 border will be purple */
                     />  
                 </>           
                 </AdvancedMarker>
