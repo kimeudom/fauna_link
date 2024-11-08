@@ -4,6 +4,7 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { IoMdLogIn } from "react-icons/io";
 import { FaUsers, FaPlusCircle } from "react-icons/fa";
 import { IoPawSharp } from "react-icons/io5";
+import { BiHelpCircle } from "react-icons/bi";
 
 export default function Sidebar(props: {choices:string[], onFilterChange: (selectedChoice: string) => void}): JSX.Element {
     const [open, setOpen] = useState(true);
@@ -29,6 +30,7 @@ export default function Sidebar(props: {choices:string[], onFilterChange: (selec
         { name: 'Select a species', link: '#', icon: <IoPawSharp size={20} /> },
         { name: 'Register Users', link: '/signup', icon: <FaUsers size={20} /> },
         { name: 'Register Animals', link: '/registerAnimals', icon: <FaPlusCircle size={20} /> },
+        { name: 'Help', link: '/Help', icon: <BiHelpCircle size={20} /> }, 
     ];
 
     return (

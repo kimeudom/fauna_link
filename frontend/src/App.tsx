@@ -4,6 +4,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Ramani from './components/Ramani';
 import RegisterAnimals from './components/RegisterAnimals';
+import Help from './components/Help';
 
 const App: React.FC = () => {
     return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/ramani" element={<Ramani />} /> 
                         <Route path="/registerAnimals" element={<RegisterAnimals />} />
+                        <Route path="/help" element={<Help />} />
                     </Routes>
                 </div>
             </div>
