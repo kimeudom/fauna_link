@@ -56,6 +56,12 @@ export default function Ramani(): JSX.Element{
         }
 
         getAnimals()
+
+        const interval = setInterval(() => {
+            getAnimals();
+        }, 15000);
+        
+        return ()=> clearInterval(interval)
     }, [])
 
     //Loads data into the choices state

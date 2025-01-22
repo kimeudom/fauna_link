@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Ramani from './components/Ramani';
@@ -17,6 +17,7 @@ const App: React.FC = () => {
                         <Route path="/ramani" element={<Ramani />} /> 
                         <Route path="/registerAnimals" element={<RegisterAnimals />} />
                         <Route path="/help" element={<Help />} />
+                        <Route path='*'element={<Navigate to="/"/>}/>
                     </Routes>
                 </div>
             </div>
